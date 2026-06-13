@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作れるのに伸びないクセ診断 | SNS発信・企画参加・バイブコーディングバイアス判定</title>
+  <meta name="description" content="AIやバイブコーディングで爆速で成果物を作れるのに、なぜか発信やコミュニティ活動で伸び悩む「強みの暴走」によるクセを20問の自己診断で可視化。">
+  <meta name="author" content="EarthKey">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#2F6F6D">
+  <link rel="canonical" href="https://pm-souri.vercel.app/">
+
+  <!-- Security headers (meta-level fallback) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- OGP / Twitter Card -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="作れるのに伸びないクセ診断">
+  <meta property="og:description" content="AIで爆速でサイトを作れるのに伸び悩むのはなぜ？20問で無意識の発信バイアスを可視化。">
+  <meta property="og:image" content="https://pm-souri.vercel.app/images/ogp.png">
+  <meta property="og:site_name" content="EarthKey">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@EarthKey">
+  <meta name="twitter:title" content="作れるのに伸びないクセ診断">
+  <meta name="twitter:description" content="AIで爆速でサイトを作れるのに伸び悩むのはなぜ？20問で無意識の発信バイアスを可視化。">
+  <meta name="twitter:image" content="https://pm-souri.vercel.app/images/ogp.png">
+
+  <!-- Structured Data: WebApplication (Schema.org JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "作れるのに伸びないクセ診断",
+    "alternateName": "SNS & Coding Bias Diagnosis",
+    "description": "爆速でアウトプットを作れるのに、なぜか発信やコミュニティで伸び悩む「強みの暴走による発信バイアス」を20問の診断で可視化する教育ツール。",
+    "url": "https://pm-souri.vercel.app/",
+    "image": "https://pm-souri.vercel.app/images/ogp.png",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "inLanguage": "ja",
+    "isAccessibleForFree": true,
+    "isFamilyFriendly": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY",
+      "availability": "https://schema.org/InStock"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "EarthKey",
+      "url": "https://x.com/EarthKey"
+    }
+  }
+  </script>
+
+  <!-- Favicon (SVGデータURI) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%232F6F6D'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='%23fff' font-family='serif' font-weight='900'%3EC%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts: Playfair Display + Noto Serif JP + Source Sans 3 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+JP:wght@400;500;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+          integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
+          crossorigin="anonymous"
+          defer></script>
+
+  <style>
+    /* ==========================================================================
+       Design Tokens — HBR Editorial Style
+       ========================================================================== */
+    :root {
+      --font-display: 'Playfair Display', 'Noto Serif JP', serif;
+      --font-body: 'Noto Serif JP', serif;
+      --font-sans: 'Source Sans 3', sans-serif;
+
+      /* User Defined Colors */
+      --primary: #2F6F6D;
+      --secondary: #6BA8A9;
+      --ok: #22C55E;
+      --ng: #EF4444;
+      --accent: #E89B3A;
+      --bg: #F7F8F6;
+      --card: #FFFFFF;
+      --text: #1F2937;
+
+      /* Compatibility mapping */
+      --bg-main: var(--bg);
+      --bg-card: var(--card);
+      --bg-warm: #ECF2F2;
+      --text-main: var(--text);
+      --text-sub: #4B5563;
+      --text-muted: #6B7280;
+      --primary-dark: #225150;
+      --primary-light: rgba(47, 111, 109, 0.08);
+      --border: #E5E7EB;
+      --border-strong: #D1D5DB;
+      --rule-color: var(--primary);
+
+      /* 6 Type Colors (CNP Character Mapping) */
+      --color-pacesetter: #3B82F6;     /* Makami (Blue) */
+      --color-coach: #10B981;          /* Luna (Green) */
+      --color-authoritative: #8B5CF6;  /* Yama (Purple) */
+      --color-affiliative: #EC4899;    /* Tart (Pink) */
+      --color-visionary: #F59E0B;      /* Narukami (Gold/Orange) */
+      --color-democratic: #4B5563;     /* Orochi (Gray/Charcoal) */
+
+      --shadow-card: 0 1px 3px rgba(31, 41, 55, 0.06), 0 1px 2px rgba(31, 41, 55, 0.04);
+      --shadow-elevated: 0 4px 16px rgba(31, 41, 55, 0.08), 0 2px 6px rgba(31, 41, 55, 0.04);
+      --shadow-hero: 0 8px 32px rgba(31, 41, 55, 0.10);
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 520px;
+    }
+
+    /* ==========================================================================
+       Reset & Base
+       ========================================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       App Container
+       ========================================================================== */
+    .app {
+      width: 100%;
+      max-width: var(--max-width);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-hero);
+      position: relative;
+    }
+
+    /* ==========================================================================
+       Screens (common)
+       ========================================================================== */
+    .screen {
+      display: none;
+      padding: 2.5rem 2rem;
+      animation: screenEnter 0.5s ease-out forwards;
+    }
+    .screen.active { display: block; }
+
+    @keyframes screenEnter {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rule {
+      border: none;
+      border-top: 2px solid var(--rule-color);
+      width: 48px;
+      margin: 1.5rem 0;
+    }
+    .rule--wide { width: 100%; border-top-width: 1px; border-color: var(--border); }
+    .rule--center { margin-left: auto; margin-right: auto; }
+
+    /* ==========================================================================
+       INTRO SCREEN
+       ========================================================================== */
+    .intro-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .intro-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.3;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .intro-subtitle {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-sub);
+      margin-bottom: 1.25rem;
+    }
+
+    .intro-lead {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      margin-bottom: 1rem;
+      line-height: 1.9;
+    }
+    .intro-lead strong { color: var(--text-main); }
+
+    .intro-meta {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .intro-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+    .intro-disclaimer {
+      margin-top: 1.25rem;
+      padding: 0.85rem 1rem;
+      background: rgba(47, 111, 109, 0.06);
+      border-left: 3px solid var(--primary);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      line-height: 1.7;
+      color: var(--text-sub);
+    }
+    .intro-disclaimer strong { color: var(--primary-dark); font-weight: 700; }
+
+    /* ==========================================================================
+       Site Footer
+       ========================================================================== */
+    .site-footer {
+      width: 100%;
+      max-width: var(--max-width);
+      margin-top: 1.5rem;
+      padding: 1.25rem 1rem 1rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+      text-align: center;
+    }
+    .site-footer a {
+      color: var(--primary);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .site-footer a:hover { border-bottom-color: var(--primary); }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .footer-attribution {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-primary:active { transform: scale(0.98); }
+
+    /* ==========================================================================
+       QUIZ SCREEN
+       ========================================================================== */
+    .quiz-progress { margin-bottom: 2rem; }
+
+    .progress-track {
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      margin-bottom: 0.5rem;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      transition: width 0.35s ease;
+    }
+
+    .progress-info {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .q-card {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .q-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--primary);
+      opacity: 0.18;
+      position: absolute;
+      right: 2rem;
+      top: 5.5rem;
+      line-height: 1;
+      user-select: none;
+    }
+    .q-text {
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .opt-btn {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-main);
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    .opt-btn::before {
+      content: '';
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border: 1.5px solid var(--border-strong);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    .opt-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .opt-btn:hover::before {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .opt-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      font-weight: 700;
+    }
+    .opt-btn.selected::before {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .btn-back {
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+    .btn-back:hover { color: var(--text-main); }
+    .btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ==========================================================================
+       LOADING SCREEN
+       ========================================================================== */
+    .loading-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .loading-bar {
+      width: 160px;
+      height: 2px;
+      background: var(--border);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .loading-bar-inner {
+      width: 40%;
+      height: 100%;
+      background: var(--primary);
+      animation: loadSlide 1.2s ease-in-out infinite;
+    }
+    @keyframes loadSlide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(400%); }
+    }
+    .loading-text {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       RESULT SCREEN
+       ========================================================================== */
+    .result-screen { padding: 0; }
+    .result-section {
+      padding: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .result-section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* --- Section 1: Misses --- */
+    .misses-section {
+      background: linear-gradient(135deg, #FEF2F2 0%, #FFFDFD 100%);
+      border-bottom: 2px solid var(--ng);
+    }
+    .misses-heading {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ng);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .misses-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .misses-item {
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .misses-item::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ng);
+      font-weight: 400;
+    }
+
+    /* --- Section 2: Type Header --- */
+    .type-section {
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+    .type-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .type-name {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+    .type-label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      margin-bottom: 1rem;
+    }
+    .type-ratio-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 1rem;
+      border: 1px solid var(--border-strong);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .type-catchcopy {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    .type-eyebrow-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .sub-tendency-block {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px dashed var(--border);
+    }
+    .sub-tendency-block .sub-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .sub-tendency-block .sub-display {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    .sub-tendency-block .sub-display .sub-emoji {
+      font-size: 1.4rem;
+      margin-right: 0.25rem;
+    }
+
+    /* Composed reason */
+    .reason-text.composed { padding-left: 0; border-left: none; }
+    .reason-text.composed > * { border-left: 3px solid var(--primary); padding-left: 1.25rem; }
+    .reason-text.composed p { margin-bottom: 0.85rem; }
+    .reason-text.composed p:last-child { margin-bottom: 0; }
+    .reason-text.composed ul {
+      list-style: none;
+      margin: 0.5rem 0 0.85rem;
+      padding-left: 1.25rem;
+    }
+    .reason-text.composed ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+    .reason-text.composed ul li::before {
+      content: "・";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .reason-text.composed .closer {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .illustration-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    .illustration-img {
+      display: block;
+      max-width: 100%;
+      max-height: 400px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.3s ease, filter 0.3s ease, transform 0.25s ease;
+      cursor: zoom-in;
+    }
+    .illustration-img:hover {
+      box-shadow: 0 0 18px 6px rgba(107, 168, 169, 0.55), 0 0 40px 12px rgba(107, 168, 169, 0.25);
+      filter: brightness(1.08);
+      transform: scale(1.02);
+    }
+
+    /* --- Section 3: Reason --- */
+    .reason-text {
+      font-size: 0.95rem;
+      line-height: 2;
+      color: var(--text-sub);
+      border-left: 3px solid var(--primary);
+      padding-left: 1.25rem;
+    }
+
+    /* --- Section 4: Graphs --- */
+    .bars-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 2rem;
+    }
+    .bar-row { display: flex; flex-direction: column; gap: 0.2rem; }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .bar-track {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-warm);
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      transition: width 1s ease-out;
+    }
+
+    .chart-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem 0;
+    }
+    .chart-wrap canvas {
+      max-width: 320px;
+      max-height: 280px;
+    }
+
+    /* --- Section 5: OK Action --- */
+    .ok-section { background: #F0FDF4; }
+    .ok-heading {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ok);
+      margin-bottom: 1rem;
+    }
+    .ok-action {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      line-height: 1.7;
+    }
+    .serifu-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      position: relative;
+    }
+    .serifu-label {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+    .serifu-text {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.6;
+      padding-right: 2rem;
+    }
+    .btn-copy {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid var(--border);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .btn-copy:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* --- Section 6: Sub card --- */
+    .sub-section {
+      border-left: 3px solid var(--text-muted);
+      margin: 0 2rem;
+      padding: 1rem 1.25rem;
+      border-bottom: none;
+    }
+    .sub-text { font-size: 0.9rem; color: var(--text-sub); line-height: 1.9; }
+
+    /* --- Section 7: Awareness --- */
+    .awareness-section {
+      background: rgba(232, 155, 58, 0.08);
+      border-left: 3px solid var(--accent);
+    }
+
+    /* --- Section 8: Memo & Checklist --- */
+    .memo-heading {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .checklist { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+    .check-item input[type="checkbox"] { margin-top: 0.25rem; accent-color: var(--primary); cursor: pointer; }
+    .add-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .input-action {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--border);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+    .btn-add {
+      padding: 0.5rem 0.85rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .memo-textarea {
+      width: 100%;
+      height: 80px;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      background: var(--bg-main);
+      color: var(--text-main);
+      resize: none;
+      margin-bottom: 0.5rem;
+    }
+    .memo-note {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* --- Section 9: Actions --- */
+    .actions-section { background: var(--bg-warm); }
+    .action-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .btn-action {
+      display: block;
+      width: 100%;
+      padding: 0.85rem;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+    .btn-action--fill { background: var(--primary); color: #fff; }
+    .btn-action--fill:hover { background: var(--primary-dark); }
+    .btn-action--outline {
+      background: var(--bg-card);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-action--outline:hover { background: var(--primary-light); }
+    .btn-action--ghost {
+      background: transparent;
+      color: var(--text-sub);
+      border: 1px solid var(--border-strong);
+    }
+    .btn-action--ghost:hover { border-color: var(--text-main); color: var(--text-main); }
+
+    .study-guide {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .study-guide strong { display: block; margin-bottom: 0.25rem; color: var(--text-main); }
+
+    .print-memo-out { display: none; }
+
+    /* ==========================================================================
+       PRINT STYLES
+       ========================================================================== */
+    @media print {
+      body { background: #fff !important; padding: 0 !important; display: block !important; }
+      .app { box-shadow: none !important; border: none !important; max-width: 100% !important; background: #fff !important; }
+      .screen { display: none !important; }
+      #result-screen { display: block !important; padding: 0 !important; }
+      .actions-section, .add-row, .btn-copy, .study-guide, .memo-note { display: none !important; }
+      .result-section { border-bottom: 1px solid #ccc !important; }
+      .misses-section { background: #fff !important; border: 1px solid var(--ng) !important; }
+      .ok-section { background: #fff !important; }
+      .awareness-section { background: #fff !important; }
+      .type-section { background: #fff !important; }
+      .chart-wrap { page-break-inside: avoid; }
+      .memo-textarea { display: none !important; }
+      .print-memo-out { display: block !important; border: 1px solid #ccc; padding: 0.75rem; min-height: 60px; font-size: 0.85rem; white-space: pre-wrap; }
+    }
+
+    /* ==========================================================================
+       RESPONSIVE
+       ========================================================================== */
+    @media (max-width: 560px) {
+      body { padding: 0.75rem 0.5rem; }
+      .screen { padding: 1.75rem 1.25rem; }
+      .result-section { padding: 1.5rem 1rem; }
+      .intro-title { font-size: 1.5rem; }
+      .intro-subtitle { font-size: 0.9rem; }
+      .intro-lead { font-size: 0.88rem; }
+      .intro-meta { flex-wrap: wrap; gap: 0.5rem 1rem; }
+      .type-name { font-size: 1.35rem; }
+      .type-section { padding: 2rem 1rem; }
+      .type-ratio-badge { font-size: 0.7rem; padding: 0.3rem 0.75rem; }
+      .type-catchcopy { font-size: 0.88rem; }
+      .q-number { font-size: 2.5rem; right: 1.25rem; top: 4.5rem; }
+      .q-text { font-size: 0.95rem; }
+      .opt-btn { font-size: 0.85rem; padding: 0.75rem 0.85rem; padding-left: 2.25rem; }
+      .sub-section { margin: 0 0.5rem; padding: 0.85rem 1rem; }
+      .sub-text { font-size: 0.82rem; }
+      .misses-heading { font-size: 1rem; }
+      .misses-item { font-size: 0.88rem; }
+      .reason-text { font-size: 0.88rem; line-height: 1.85; padding-left: 1rem; }
+      .bar-label { font-size: 0.72rem; }
+      .chart-wrap canvas { max-width: 280px; max-height: 240px; }
+      .ok-heading { font-size: 1rem; }
+      .ok-action { font-size: 0.95rem; }
+      .serifu-text { font-size: 0.9rem; padding-right: 2.5rem; }
+      .awareness-section { padding: 1.25rem 1rem; }
+      .memo-heading { font-size: 1rem; }
+      .check-item { font-size: 0.82rem; }
+      .add-row { flex-wrap: wrap; }
+      .input-action { min-width: 0; width: 100%; }
+      .btn-add { width: 100%; }
+      .memo-textarea { font-size: 0.82rem; }
+      .btn-action { font-size: 0.82rem; padding: 0.75rem; }
+      .study-guide { font-size: 0.72rem; }
+      .illustration-img { max-height: 300px; }
+    }
+
+    @media (max-width: 380px) {
+      .screen { padding: 1.25rem 1rem; }
+      .result-section { padding: 1.25rem 0.85rem; }
+      .intro-title { font-size: 1.3rem; }
+      .type-name { font-size: 1.2rem; }
+      .q-text { font-size: 0.9rem; }
+      .misses-item { font-size: 0.82rem; }
+      .ok-action { font-size: 0.88rem; }
+      .serifu-text { font-size: 0.85rem; }
+      .chart-wrap canvas { max-width: 240px; max-height: 210px; }
+    }
+
+    /* ==========================================================================
+       LIGHTBOX MODAL
+       ========================================================================== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(31, 41, 55, 0.95);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      cursor: zoom-out;
+      padding: 1rem;
+    }
+    .lightbox.active {
+      display: flex;
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .lightbox-content {
+      max-width: 95%;
+      max-height: 85%;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      animation: zoomIn 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+      z-index: 2001;
+    }
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible {
+      color: var(--secondary);
+      border-color: var(--secondary);
+      outline: none;
+    }
+    .lightbox-caption {
+      margin-top: 1rem;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      font-family: var(--font-sans);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ================================================================
+         INTRO SCREEN
+         ================================================================ -->
+    <div id="intro-screen" class="screen active" tabindex="-1">
+      <p class="intro-eyebrow">SNS & Coding Bias Assessment</p>
+      <h1 class="intro-title">作れるのに伸びない<br>クセ診断</h1>
+      <p class="intro-subtitle">— SNS発信・企画参加・バイブコーディング編 —</p>
+      <hr class="rule">
+
+      <p class="intro-lead">
+        <strong>「AIやバイブコーディングで爆速で成果物を作れるのに、なぜかSNSやコミュニティで反応が伸び悩んでいませんか？」</strong>
+      </p>
+      <p class="intro-lead">
+        この診断は、あなたの性格を当てるものではありません。良かれと思って無意識に繰り返してしまう「強みの暴走による発信バイアス」を可視化するツールです。
+      </p>
+      <p class="intro-lead">
+        X、Threads、Substackでの発信や、創理Discordなどでの企画参加シーンをイメージして、直感で回答してください。
+      </p>
+
+      <div class="intro-meta">
+        <span>📋 全20問</span>
+        <span>⏱ 約3分</span>
+        <span>🔒 回答は端末内のみ保存</span>
+      </div>
+
+      <button id="btn-start" class="btn-primary">診断を開始する</button>
+
+      <p class="intro-disclaimer">
+        ※本診断は個人発信やコミュニティ活動における行動パターンの自己点検を目的とした<strong>教育ツール</strong>です。回答内容・診断結果は端末内（localStorage）にのみ保存され、外部送信されません。
+      </p>
+    </div>
+
+    <!-- ================================================================
+         QUIZ SCREEN
+         ================================================================ -->
+    <div id="quiz-screen" class="screen" tabindex="-1">
+      <div class="quiz-progress">
+        <div class="progress-track" role="progressbar" id="progress-bar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="診断の進捗">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div class="progress-info">
+          <span id="progress-num">質問 1 / 20</span>
+          <span id="progress-pct" aria-hidden="true">0%</span>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span id="q-number" class="q-number" aria-hidden="true">01</span>
+        <p id="q-text" class="q-text" aria-live="polite"></p>
+      </div>
+
+      <div class="options" role="group" aria-label="回答の選択肢">
+        <button class="opt-btn" data-value="2">かなり当てはまる</button>
+        <button class="opt-btn" data-value="1">やや当てはまる</button>
+        <button class="opt-btn" data-value="0">どちらとも言えない</button>
+        <button class="opt-btn" data-value="-1">あまり当てはまらない</button>
+        <button class="opt-btn" data-value="-2">全く当てはまらない</button>
+      </div>
+
+      <button id="btn-back" class="btn-back" disabled>← 前の質問に戻る</button>
+    </div>
+
+    <!-- ================================================================
+         LOADING SCREEN
+         ================================================================ -->
+    <div id="loading-screen" class="screen" tabindex="-1" aria-busy="true">
+      <div class="loading-wrap" role="status" aria-live="polite">
+        <div class="loading-bar" aria-hidden="true"><div class="loading-bar-inner"></div></div>
+        <p class="loading-text">あなたの無意識のクセを分析中…</p>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         RESULT SCREEN
+         ================================================================ -->
+    <div id="result-screen" class="screen result-screen" tabindex="-1">
+
+      <!-- S1: Misses -->
+      <div class="result-section misses-section">
+        <p class="section-label">Assessment Result</p>
+        <h2 class="misses-heading">⚠ あなたが最も起こしやすい伸び悩み</h2>
+        <div id="r-low-score-notice" style="display:none;"></div>
+        <ul id="r-misses" class="misses-list"></ul>
+      </div>
+
+      <!-- S2: Type Header -->
+      <div id="r-type-section" class="result-section type-section">
+        <p id="r-type-eyebrow" class="type-eyebrow-label" style="display:none;">あなたのタイプ</p>
+        <span id="r-emoji" class="type-emoji"></span>
+        <h2 id="r-type-name" class="type-name"></h2>
+        <p id="r-type-label" class="type-label"></p>
+        <div id="r-ratio" class="type-ratio-badge"></div>
+        <div id="r-sub-tendency-block" class="sub-tendency-block" style="display:none;"></div>
+        <div id="r-illustration-container" class="illustration-container"></div>
+        <p id="r-catchcopy" class="type-catchcopy"></p>
+      </div>
+
+      <!-- S3: Reason -->
+      <div class="result-section">
+        <p class="section-label">Why This Happens</p>
+        <p id="r-reason" class="reason-text"></p>
+      </div>
+
+      <!-- S4: Graphs -->
+      <div class="result-section">
+        <p class="section-label">Bias Tendency Map</p>
+        <div id="r-bars" class="bars-wrap"></div>
+        <hr class="rule rule--wide">
+        <div class="chart-wrap">
+          <canvas id="radar-canvas"></canvas>
+        </div>
+      </div>
+
+      <!-- S5: OK Action -->
+      <div class="result-section ok-section">
+        <p class="section-label">Tomorrow's Action</p>
+        <h3 class="ok-heading">✅ 明日からできるOK行動</h3>
+        <p id="r-ok-action" class="ok-action"></p>
+        <div class="serifu-box">
+          <span class="serifu-label">Practical Phrase</span>
+          <p id="r-serifu" class="serifu-text"></p>
+          <button id="btn-copy" class="btn-copy" title="コピー">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6ZM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2Z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- S6: Sub tendency (single type only) -->
+      <div id="r-sub-section" class="sub-section" style="display:none;">
+        <p class="section-label">Sub Tendency</p>
+        <p id="r-sub-text" class="sub-text"></p>
+      </div>
+
+      <!-- S7: Awareness (Q20 flag) -->
+      <div id="r-awareness-section" class="result-section awareness-section" style="display:none;">
+        <p class="section-label">Self-Awareness</p>
+        <p id="r-awareness-text" class="sub-text"></p>
+      </div>
+
+      <!-- S8: Memo & Checklist -->
+      <div class="result-section">
+        <h3 class="memo-heading">📝 振り返りメモ ＆ 今日から試す行動</h3>
+        <div id="r-checklist" class="checklist"></div>
+        <div class="add-row">
+          <input type="text" id="input-add" class="input-action" placeholder="自分で試す行動を追加…">
+          <button id="btn-add" class="btn-add">追加</button>
+        </div>
+        <textarea id="memo-area" class="memo-textarea" placeholder="今日の気づきを自由に書き留めてください…"></textarea>
+        <div id="print-memo" class="print-memo-out"></div>
+        <p class="memo-note">🔒 データはこの端末のlocalStorageにのみ保存されます。外部送信はされません。</p>
+      </div>
+
+      <!-- S9: Actions -->
+      <div class="result-section actions-section">
+        <p class="section-label">Save & Share</p>
+        <div class="action-stack">
+          <button id="btn-print" class="btn-action btn-action--fill">🖨 結果を印刷 / PDF保存</button>
+          <button id="btn-dl-img" class="btn-action btn-action--outline">📷 結果画像をダウンロード</button>
+          <button id="btn-share-x" class="btn-action btn-action--outline">𝕏 改善行動を宣言してポスト</button>
+          <button id="btn-restart" class="btn-action btn-action--ghost">もう一度診断する</button>
+        </div>
+        <div class="study-guide">
+          <strong>👥 コミュニティでの活用法</strong>
+          診断結果を画像やPDFで保存し、コミュニティ仲間と共有してみましょう。「ペースセッター型（実行）」と「民主型（慎重）」など、お互いの強みと弱点を理解することで、相性チェックや最適なコラボレーションのヒントになります。
+        </div>
+      </div>
+
+    </div><!-- /result-screen -->
+  </div><!-- /app -->
+
+  <!-- ================================================================
+       SITE FOOTER (legal & attribution)
+       ================================================================ -->
+  <footer class="site-footer">
+    <nav class="footer-links" aria-label="サイト情報">
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="https://x.com/EarthKey" rel="noopener noreferrer" target="_blank">お問い合わせ（𝕏）</a>
+    </nav>
+    <p>本診断は教育・自己分析目的のツールです。行動改善のきっかけとしてご活用ください。</p>
+    <p class="footer-attribution">
+      理論ベース：三隅二不二「PM理論」／ Daniel Goleman「Leadership That Gets Results」（HBR, 2000）<br>
+      © 2026 EarthKey. All rights reserved.
+    </p>
+  </footer>
+
+  <!-- ================================================================
+       JAVASCRIPT
+       ================================================================ -->
+  <script>
+    // ================================================================
+    // 1. DATA: Questions (20)
+    // ================================================================
+    const questions = [
+      { id: 1,  text: "投稿した直後に、反応を見ずにすぐ次の制作や投稿の準備を始めてしまうことがある。", type: "pacesetter" },
+      { id: 2,  text: "読者のコメントを丁寧に返すことより、次のアウトプットを作るスピードを優先してしまうことがある。", type: "pacesetter" },
+      { id: 3,  text: "企画に参加するとき、他の参加者の進捗や反応よりも、自分の制作ペースで進めることを最優先してしまうことがある。", type: "pacesetter" },
+      { id: 4,  text: "投稿を読んだ人が次にどうすればいいか（リンクや次の行動）を明示せずに投稿を終えがちだ。", type: "coach" },
+      { id: 5,  text: "読者の反応（コメントなど）を待つだけで、自分からアプローチしたり次のアクションを促したりしないことがある。", type: "coach" },
+      { id: 6,  text: "企画の中で初心者が困っていても、相手から話しかけられるまで見守る姿勢を崩さないことがある。", type: "coach" },
+      { id: 7,  text: "「このテーマは絶対にウケる」と自信があるとき、数値や反応が悪くても同じ形で投稿を続けてしまうことがある。", type: "authoritative" },
+      { id: 8,  text: "読者からの違和感やフィードバックがあっても、「彼らはまだ理解していないだけ」と聞き流してしまうことがある。", type: "authoritative" },
+      { id: 9,  text: "自分のやり方や成功パターンを、前提が異なる他の発信者にもそのまま当てはめてアドバイスしてしまうことがある。", type: "authoritative" },
+      { id: 10, text: "仲間のコミュニティ内での盛り上がりを意識して、初見のユーザーには伝わりにくい言葉や前提を使ってしまうことがある。", type: "affiliative" },
+      { id: 11, text: "反感を買ったり嫌われたりするのを恐れて、本来言いたい主張や少し厳しい意見を柔らかくぼかしてしまうことがある。", type: "affiliative" },
+      { id: 12, text: "「いつもコメントをくれる人」とのやり取りに集中して、新しい読者が入りやすい工夫を忘れてしまうことがある。", type: "affiliative" },
+      { id: 13, text: "未来の技術や壮大な構想を熱く語るが、読者が今日から使える具体的な手順を書き忘れてしまうことがある。", type: "visionary" },
+      { id: 14, text: "「なぜそれが必要か（Why）」の解説に熱中して、「どうやるか（How）」の解説が薄くなってしまうことがある。", type: "visionary" },
+      { id: 15, text: "自分の頭の中ではつながっている未来像を、現在の前提なしで話してしまい、周囲を置き去りにしてしまうことがある。", type: "visionary" },
+      { id: 16, text: "複数のツールや手法を中立に紹介するだけで、「今の私のおすすめはこれ」という自分の決断を伝えないことがある。", type: "democratic" },
+      { id: 17, text: "投稿の最後に「皆さんどう思いますか？」や「正解はありません」と、すべて読者の判断に委ねる形で終わらせがちだ。", type: "democratic" },
+      { id: 18, text: "情報を網羅的に整理することに満足して、結局どれが最も実用的なのかを明示しないことがある。", type: "democratic" },
+      { id: 19, text: "忙しい日や制作に追われている時ほど、自分のいつものパターンで対応を済ませてしまうことがある。", type: "correction_q19" },
+      { id: 20, text: "周囲から指摘されたり、数値を客観的に見たりして初めて、自分の発信のクセに気づくことがある。", type: "correction_q20" }
+    ];
+
+    // ================================================================
+    // 2. DATA: 6 Type Details
+    // ================================================================
+    const typeDetails = {
+      pacesetter: {
+        name: "ペースセッター型",
+        label: "量で押し切りすぎ型",
+        emoji: "🐺", /* Makami (Blue Wolf) */
+        color: "#3B82F6",
+        misses: [
+          "反応スルー（読者の反応を確認しないまま次の投稿や企画へ進む）",
+          "改善遅れ（積み上げる速度に対して見直しや改善のテンポが追いつかない）",
+          "量だけ加速（作業量は増えるのに“距離が縮まる反応”が伸びにくい）"
+        ],
+        bias: "正しく出そう・早く出そうとする意識が強いあまり、読者がどう受け取ったかを確かめないまま、次の投稿や企画へ進んでしまう",
+        okAction: "1投稿出したら、最低30分は次へ進まずに反応を観察する",
+        serifu: "「ここまでの投稿で、刺さった部分があれば教えてください。次の投稿に反映します。」",
+        catchcopy: "「投稿しているだけで、届いていないかもしれません」",
+        mainComment: "圧倒的な作業スピードと高い推進力で、爆速で成果物を作り出す力があります。",
+        subComment: "しかし、早く出すことや完了させることを最優先しがちです。",
+        riskComment: "読者からのリアクションを観察する時間を取らずに次の作成に入り、一方通行の発信になりやすくなります。"
+      },
+      coach: {
+        name: "コーチ型",
+        label: "待ちすぎ・反応待ち型",
+        emoji: "🐰", /* Luna (White Rabbit) */
+        color: "#10B981",
+        misses: [
+          "反応待ち（投稿後にリアクションをただ観察するだけで次のアクションを起こさない）",
+          "導線未設計（次に読者にどこへ行ってほしいかが投稿内で言語化されていない）",
+          "声の取りこぼし（届いた読者の声を次の投稿や企画に反映しきれない）"
+        ],
+        bias: "読者の自発的な反応を尊重しすぎるあまり、自分から提示・働きかけ・改善を仕掛けないまま、投稿が静かに流れていく",
+        okAction: "投稿の最後に「読者が次に取れる1アクション」を必ず1行添える",
+        serifu: "「ここまで読んでくださってありがとうございます。もしご自身のケースが近ければ、コメントで一言だけ教えてください。次の投稿に反映します。」",
+        catchcopy: "「待っているだけでは、読者は動けません」",
+        mainComment: "相手の自主性を重んじ、じっくり見守りながら考える余白を与える優しさがあります。",
+        subComment: "しかし、相手の出番を尊重するあまり、自分からのアプローチや案内を控えがちです。",
+        riskComment: "投稿の最後に次のアクション（リンクや質問）を添えるのを忘れたり、初心者が困っていても見過ごしてしまいやすくなります。"
+      },
+      authoritative: {
+        name: "強制型",
+        label: "自己正解・押し切り型",
+        emoji: "😈", /* Yama (Purple Oni) */
+        color: "#8B5CF6",
+        misses: [
+          "決めつけ投稿（「これは伸びるはず」と自分の成功パターンを信じ込んで出す）",
+          "方向転換の遅れ（反応が鈍くても仮説や型を曲げずに同じ形を繰り返す）",
+          "市場の声の軽視（読者や市場から届く違和感のシグナルをノイズとして流す）"
+        ],
+        bias: "自分の成功体験や仮説への信頼が強いあまり、読者・市場の反応データを十分に確認せずに同じ主張で押し切ろうとする",
+        okAction: "次の投稿を書く前に、直近で読者から届いたコメントやDMを3件だけ読み直す",
+        serifu: "「この投稿は私の仮説です。もし違う見え方や前提があれば、コメントで教えてください。次の投稿で検証します。」",
+        catchcopy: "あなたの「正しさ」が、読者を遠ざけているかもしれません",
+        mainComment: "自分の成功体験や明確なロジックに基づいて、軸がぶれない主張を強く発信する力があります。",
+        subComment: "しかし、自分の正しさに固執し、他者のやり方をやんわり否定しがちです。",
+        riskComment: "反応データが鈍くても仮説を頑なに曲げず、前提が異なる読者に対しても自分の正解を押し付けやすくなります。"
+      },
+      affiliative: {
+        name: "関係重視型",
+        label: "内輪やさしすぎ型",
+        emoji: "🐢", /* Tart (Pink Turtle) */
+        color: "#EC4899",
+        misses: [
+          "内輪寄り（仲間うちでしか通じない言葉・前提・空気感に投稿が寄る）",
+          "初見への翻訳不足（専門語や略語の説明が抜け落ち、新規読者が追いつけない）",
+          "主張の薄まり（嫌われるリスクを恐れて、言いたい立場や提案がやわらかくなりすぎる）"
+        ],
+        bias: "コミュニティ内の関係や場の空気を大切にするあまり、初見の読者に伝わる言葉や、自分の立場をはっきり示す主張が弱くなる",
+        okAction: "投稿前に、その投稿を「フォロー0の初見ユーザーが初めて読む」と仮定して、内輪語・略語を1つだけ言い換える",
+        serifu: "「はじめての方向けに補足しますと、〇〇というのは△△のことです。中の人だけがわかる前提にならないよう、ここだけ言い直しておきますね。」",
+        catchcopy: "あなたの「やさしさ」が、初見の読者を置き去りにしているかもしれません",
+        mainComment: "周囲との関係性を大事にし、コミュニティを温かく保ち、誰もが話しやすい空気を作る力があります。",
+        subComment: "しかし、内輪の盛り上がりを最優先し、場の衝突や反感を極端に恐れがちです。",
+        riskComment: "仲間内でのみ通じる専門語や略語を使ってしまい、初見のユーザーが置いてけぼりになったり、本当に言いたい主張をぼかして弱めてしまいやすくなります。"
+      },
+      visionary: {
+        name: "先見型",
+        label: "構想語りすぎ型",
+        emoji: "🦅", /* Narukami (Hawk) */
+        color: "#F59E0B",
+        misses: [
+          "未来語り偏重（壮大な構想や時代論、パラダイム解説に投稿が偏る）",
+          "今日の1投稿が薄い（明日読者が現場で動けるレベル of 具体策が乗らない）",
+          "手順の不足（読者が今すぐ30秒で試せるアクションやテンプレが添えられない）"
+        ],
+        bias: "未来像や思想を語ることは得意な反面、今日の1投稿・1導線を具体的な手順に落とす力が弱まる",
+        okAction: "投稿の最後に「読者が今日30秒で試せる1アクション」を1行だけ書き添える",
+        serifu: "「今日のところは、まずこれだけ試してみてください。『〇〇を1行メモする』、それだけで十分です。続きは明日の投稿で広げます。」",
+        catchcopy: "未来を語る前に、今日の1行に変えてください",
+        mainComment: "非常に高い視座から、魅力的なビジョンや未来の可能性を熱く語る力があります。",
+        subComment: "しかし、壮大な構想や抽象的な思想を語ることに偏りがちです。",
+        riskComment: "読者が今すぐ試せる具体的な手順や30秒アクションを提示するのを忘れ、構想倒れの発信になりやすくなります。"
+      },
+      democratic: {
+        name: "民主型",
+        label: "選択肢広げすぎ型",
+        emoji: "🐍", /* Orochi (Black Snake) */
+        color: "#4B5563",
+        misses: [
+          "立場の曖昧化（自分の推奨や結論を明示せず、選択肢を並べたまま閉じる）",
+          "推奨の不在（「私はこう思う」「こちらをおすすめします」が抜け落ちる）",
+          "情報過多（網羅性を重視するあまり、読者が結局何をすればいいか読み取れない）"
+        ],
+        bias: "読者の自己判断を尊重しようとするあまり、自分の立場や推奨を提示せず、丁寧に整理した選択肢を並めて終わってしまう",
+        okAction: "選択肢を提示した上で、最後に「いまの私のおすすめは〇〇です」と1行だけ自分の立場を添える",
+        serifu: "「AとB、どちらも選択肢として成立します。ただ、いまの私のおすすめはAです。理由は〇〇だからです。状況に合わせて選んでみてください。」",
+        catchcopy: "「お任せします」は、時に不親切な丸投げになります",
+        mainComment: "中立的な視点で物事を捉え、多角的な情報を網羅的に整理して読者に届けるバランス感覚があります。",
+        subComment: "しかし、特定の推奨を言うのを避け、すべての判断を相手に委ねがちです。",
+        riskComment: "選択肢をただ並べるだけで『私のおすすめはこれ』という立場を示さず、読者が『結局どうすればいいの？』と迷う結果を招きやすくなります。"
+      }
+    };
+
+    const TYPE_KEYS = ["pacesetter", "coach", "authoritative", "affiliative", "visionary", "democratic"];
+
+    function getPercentage(score) {
+      return Math.min(100, Math.max(0, Math.round(((score + 6) / 12) * 100)));
+    }
+
+    // ================================================================
+    // 3. APPLICATION STATE
+    // ================================================================
+    let currentIdx = 0;
+    let answers = new Array(questions.length).fill(null);
+    let dynamicChecklist = [];
+    let radarChartInstance = null;
+    let activeCheckKey = "";
+    let activeMemoKey = "";
+
+    const safeStorage = {
+      getItem(k) {
+        try { return localStorage.getItem(k); } catch (e) { return null; }
+      },
+      setItem(k, v) {
+        try { localStorage.setItem(k, v); return true; } catch (e) { return false; }
+      },
+      removeItem(k) {
+        try { localStorage.removeItem(k); } catch (e) { /* ignore */ }
+      }
+    };
+
+    // DOM references
+    const $intro   = document.getElementById("intro-screen");
+    const $quiz    = document.getElementById("quiz-screen");
+    const $loading = document.getElementById("loading-screen");
+    const $result  = document.getElementById("result-screen");
+
+    // ================================================================
+    // 4. SCREEN NAVIGATION
+    // ================================================================
+    function showScreen(el) {
+      [$intro, $quiz, $loading, $result].forEach(s => s.classList.remove("active"));
+      el.classList.add("active");
+      try {
+        el.focus({ preventScroll: false });
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e) { /* old browsers */ }
+    }
+
+    // ================================================================
+    // 5. QUIZ LOGIC
+    // ================================================================
+    document.getElementById("btn-start").addEventListener("click", () => {
+      currentIdx = 0;
+      answers = new Array(questions.length).fill(null);
+      showScreen($quiz);
+      renderQ();
+    });
+
+    document.getElementById("btn-back").addEventListener("click", () => {
+      if (currentIdx > 0) { currentIdx--; renderQ(); }
+    });
+
+    document.querySelectorAll(".opt-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        answers[currentIdx] = parseInt(e.currentTarget.dataset.value);
+        if (currentIdx < questions.length - 1) {
+          currentIdx++;
+          renderQ();
+        } else {
+          showScreen($loading);
+          setTimeout(() => {
+            const result = analyze();
+            renderResult(result);
+            showScreen($result);
+          }, 1500);
+        }
+      });
+    });
+
+    function renderQ() {
+      const q = questions[currentIdx];
+      document.getElementById("q-text").textContent = q.text;
+      document.getElementById("q-number").textContent = String(q.id).padStart(2, "0");
+
+      const pct = (currentIdx / questions.length) * 100;
+      document.getElementById("progress-fill").style.width = pct + "%";
+      document.getElementById("progress-num").textContent = `質問 ${currentIdx + 1} / ${questions.length}`;
+      document.getElementById("progress-pct").textContent = Math.round(pct) + "%";
+      const progressBar = document.getElementById("progress-bar");
+      progressBar.setAttribute("aria-valuenow", Math.round(pct));
+      progressBar.setAttribute("aria-valuetext", `質問 ${currentIdx + 1} / ${questions.length}`);
+      document.getElementById("btn-back").disabled = (currentIdx === 0);
+
+      const savedAns = answers[currentIdx];
+      document.querySelectorAll(".opt-btn").forEach(btn => {
+        const val = parseInt(btn.dataset.value);
+        const isSelected = (savedAns !== null && val === savedAns);
+        btn.classList.toggle("selected", isSelected);
+        btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+      });
+    }
+
+    // ================================================================
+    // 6. SCORING & ANALYSIS
+    // ================================================================
+    function analyze() {
+      const scores = {
+        pacesetter:    (answers[0] || 0) + (answers[1] || 0) + (answers[2] || 0),
+        coach:         (answers[3] || 0) + (answers[4] || 0) + (answers[5] || 0),
+        authoritative: (answers[6] || 0) + (answers[7] || 0) + (answers[8] || 0),
+        affiliative:   (answers[9] || 0) + (answers[10] || 0) + (answers[11] || 0),
+        visionary:     (answers[12] || 0) + (answers[13] || 0) + (answers[14] || 0),
+        democratic:    (answers[15] || 0) + (answers[16] || 0) + (answers[17] || 0)
+      };
+
+      const isAwarenessLow = (answers[19] || 0) >= 1;
+
+      let sorted = TYPE_KEYS.slice().sort((a, b) => scores[b] - scores[a]);
+      let pk = sorted[0], sk = sorted[1], tk = sorted[2];
+      let ps = scores[pk], ss = scores[sk], ts = scores[tk];
+
+      let topScoreCount = TYPE_KEYS.filter(key => scores[key] === ps).length;
+
+      if (topScoreCount === 1 && (answers[18] || 0) >= 1) {
+        scores[pk] += 1;
+        sorted = TYPE_KEYS.slice().sort((a, b) => scores[b] - scores[a]);
+        pk = sorted[0]; sk = sorted[1]; tk = sorted[2];
+        ps = scores[pk]; ss = scores[sk]; ts = scores[tk];
+        topScoreCount = TYPE_KEYS.filter(key => scores[key] === ps).length;
+      }
+
+      // 最高得点が同点のタイプだけを複合判定の対象にする。
+      const isComposite = topScoreCount >= 3;
+      const isHybrid = topScoreCount === 2;
+
+      const pn = ps + 6, sn = ss + 6, total = pn + sn;
+      let pRatio = 50, sRatio = 50;
+      if (total > 0) { pRatio = Math.round((pn / total) * 100); sRatio = 100 - pRatio; }
+
+      const isLowScore = ps <= 0;
+
+      return { pk, sk, tk, isHybrid, isComposite, pRatio, sRatio, scores, isAwarenessLow, isLowScore };
+    }
+
+    // ================================================================
+    // 7. RESULT RENDERING
+    // ================================================================
+    function renderResult(r) {
+      const pt = typeDetails[r.pk], st = typeDetails[r.sk], tt = typeDetails[r.tk];
+
+      // S1: Misses
+      const missesUl = document.getElementById("r-misses");
+      const lowScoreNotice = document.getElementById("r-low-score-notice");
+      missesUl.innerHTML = "";
+      
+      if (r.isLowScore) {
+        lowScoreNotice.style.display = "block";
+        lowScoreNotice.style.fontSize = "0.88rem";
+        lowScoreNotice.style.color = "var(--text-sub)";
+        lowScoreNotice.style.lineHeight = "1.7";
+        lowScoreNotice.style.marginBottom = "1rem";
+        lowScoreNotice.innerHTML = "💡 <strong>全体の発信バイアススコアが低めです：</strong>特定の偏りによる暴走や伸び悩むクセが目立たない、非常にバランスの取れた安定した発信状態です。以下は、相対的にやや高めに出た傾向から抽出した『明日の改善ヒント』です。";
+      } else {
+        lowScoreNotice.style.display = "none";
+        lowScoreNotice.innerHTML = "";
+      }
+
+      let missList = [];
+      if (r.isComposite) {
+        missList = [pt.misses[0], st.misses[0], tt.misses[0]];
+      } else if (r.isHybrid) {
+        missList = [pt.misses[0], st.misses[0], pt.misses[1], st.misses[1], pt.misses[2], st.misses[2]];
+      } else {
+        missList = [...pt.misses];
+      }
+      missList.slice(0, r.isHybrid ? 4 : 3).forEach(m => {
+        const li = document.createElement("li");
+        li.className = "misses-item";
+        li.textContent = m;
+        missesUl.appendChild(li);
+      });
+
+      // S2: Type
+      const typeSection = document.getElementById("r-type-section");
+      typeSection.style.borderBottom = `3px solid ${r.isComposite ? 'var(--primary)' : pt.color}`;
+
+      const eyebrowEl = document.getElementById("r-type-eyebrow");
+      const emojiEl = document.getElementById("r-emoji");
+      const nameEl = document.getElementById("r-type-name");
+      const labelEl = document.getElementById("r-type-label");
+      const ratioEl = document.getElementById("r-ratio");
+      const subBlockEl = document.getElementById("r-sub-tendency-block");
+      const catchcopyEl = document.getElementById("r-catchcopy");
+
+      if (r.isComposite) {
+        emojiEl.textContent = "⚖️";
+        nameEl.textContent = "複合傾向型";
+        eyebrowEl.style.display = "block";
+        eyebrowEl.textContent = "あなたのタイプ";
+        labelEl.style.display = "none";
+        ratioEl.style.display = "none";
+        catchcopyEl.style.display = "none";
+
+        subBlockEl.style.display = "block";
+        subBlockEl.innerHTML = `
+          <span class="sub-eyebrow">特に出やすい3傾向</span>
+          <div class="sub-display">
+            <span class="sub-emoji">${pt.emoji}</span>${pt.name}
+            ／
+            <span class="sub-emoji">${st.emoji}</span>${st.name}
+            ／
+            <span class="sub-emoji">${tt.emoji}</span>${tt.name}
+          </div>`;
+      } else if (r.isHybrid) {
+        emojiEl.textContent = pt.emoji;
+        nameEl.textContent = pt.name;
+        eyebrowEl.style.display = "block";
+        eyebrowEl.textContent = "あなたのタイプ";
+        labelEl.style.display = "none";
+        ratioEl.style.display = "";
+        ratioEl.textContent = `${pt.name.replace("型","")} ${r.pRatio}% / ${st.name.replace("型","")} ${r.sRatio}%`;
+        catchcopyEl.style.display = "none";
+
+        subBlockEl.style.display = "block";
+        subBlockEl.innerHTML = `
+          <span class="sub-eyebrow">副傾向</span>
+          <div class="sub-display"><span class="sub-emoji">${st.emoji}</span>${st.name}</div>`;
+      } else {
+        emojiEl.textContent = pt.emoji;
+        nameEl.textContent = pt.name;
+        eyebrowEl.style.display = "none";
+        labelEl.style.display = "";
+        labelEl.textContent = pt.label;
+        ratioEl.style.display = "";
+        ratioEl.textContent = `バイアス傾向度: ${getPercentage(r.scores[r.pk])}%`;
+        catchcopyEl.style.display = "";
+        catchcopyEl.textContent = pt.catchcopy;
+        subBlockEl.style.display = "none";
+        subBlockEl.innerHTML = "";
+      }
+
+      // S2b: Illustration
+      const imgContainer = document.getElementById("r-illustration-container");
+      imgContainer.innerHTML = "";
+      
+      const appendImg = (src, alt, ariaLabel) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = alt;
+        img.className = "illustration-img";
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.tabIndex = 0;
+        img.setAttribute("role", "button");
+        img.setAttribute("aria-label", ariaLabel);
+        img.addEventListener("click", () => openLightbox(img.src, img.alt));
+        img.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openLightbox(img.src, img.alt);
+          }
+        });
+        imgContainer.appendChild(img);
+      };
+
+      if (r.isComposite) {
+        // 複合傾向型：専用イラスト
+        appendImg(
+          "images/composite.png",
+          "複合傾向型：複数の発信バイアスが複雑に絡み合っている状態を描いたイラスト",
+          "複合傾向型の補助教材を拡大表示"
+        );
+      } else {
+        appendImg(
+          `images/${r.pk}.png`,
+          `${pt.name}のNG行動とOK行動を左右で対比したCNP補助教材イラスト`,
+          `${pt.name}の補助教材を拡大表示`
+        );
+      }
+
+      // S3: Reason
+      const reasonEl = document.getElementById("r-reason");
+      reasonEl.innerHTML = "";
+      reasonEl.classList.remove("composed");
+
+      if (r.isComposite) {
+        reasonEl.classList.add("composed");
+        const riskItems = [pt, st, tt]
+          .map(t => `<li>${t.riskComment}</li>`)
+          .join("");
+        reasonEl.innerHTML = `
+          <p>あなたは特定の1タイプに偏らず、複数の発信パターンを場面や忙しさによって使い分けるタイプです。</p>
+          <p>特に「${pt.name}」「${st.name}」「${tt.name}」の3つが強く出やすい状態です。</p>
+          <p>作業が立て込んでいる場面では、</p>
+          <ul>${riskItems}</ul>
+          <p>という行動傾向が同時に発生しやすくなります。</p>
+          <p class="closer">まずは、${pt.okAction} から試して、発信の流れを整えてみてください。</p>`;
+      } else if (r.isHybrid) {
+        reasonEl.classList.add("composed");
+        reasonEl.innerHTML = `
+          <p>${pt.mainComment}</p>
+          <p>また、副傾向として「${st.name}」の性質も併せ持っています。<br>${st.subComment}</p>
+          <p>制作に追われたり忙しくなると、</p>
+          <ul>
+            <li>${pt.riskComment}</li>
+            <li>${st.riskComment}</li>
+          </ul>
+          <p>というズレが起きやすくなります。</p>
+          <p class="closer">まずは、最も強く出ている主傾向の対策として、${pt.okAction} を意識してみましょう。</p>`;
+      } else {
+        reasonEl.textContent = pt.bias + "傾向があり、" + pt.riskComment;
+      }
+
+      // S4: Bars
+      renderBars(r.scores);
+      // S4b: Radar
+      renderRadar(r.scores, r.pk, r.sk, r.isHybrid);
+
+      // S5: OK Action + Serifu
+      document.getElementById("r-ok-action").textContent = pt.okAction;
+      document.getElementById("r-serifu").textContent = pt.serifu;
+
+      // S6: Sub tendency (single only)
+      const subEl = document.getElementById("r-sub-section");
+      if (r.isHybrid || r.isComposite) {
+        subEl.style.display = "none";
+      } else {
+        subEl.style.display = "block";
+        document.getElementById("r-sub-text").textContent =
+          `2番目に高いスコアは「${st.name}」でした。${st.subComment}`;
+      }
+
+      // S7: Awareness
+      const awaEl = document.getElementById("r-awareness-section");
+      if (r.isAwarenessLow) {
+        awaEl.style.display = "block";
+        document.getElementById("r-awareness-text").textContent =
+          "あなたは自分の発信バイアスや伸びないクセについて、客観的な数値や他者からの指摘を受けるまで気づきにくい傾向があります。定期的にコミュニティの発信仲間や読者に「最近の私の投稿、読みやすいですか？」と自らフィードバックを求めるのが効果的です。";
+      } else {
+        awaEl.style.display = "none";
+      }
+
+      // S8: Memo & Checklist
+      initMemoChecklist(r.pk, r.isHybrid ? r.sk : null, r.isComposite ? [r.sk, r.tk] : null);
+    }
+
+    // ================================================================
+    // 8. BAR CHART (CSS)
+    // ================================================================
+    function renderBars(scores) {
+      const wrap = document.getElementById("r-bars");
+      wrap.innerHTML = "";
+      TYPE_KEYS.forEach(key => {
+        const t = typeDetails[key];
+        const pct = getPercentage(scores[key]);
+        const row = document.createElement("div");
+        row.className = "bar-row";
+        row.innerHTML = `
+          <div class="bar-label"><span>${t.emoji} ${t.name}</span><span>${pct}%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="background:${t.color}"></div></div>`;
+        wrap.appendChild(row);
+        setTimeout(() => { row.querySelector(".bar-fill").style.width = pct + "%"; }, 80);
+      });
+    }
+
+    // ================================================================
+    // 9. RADAR CHART (Chart.js)
+    // ================================================================
+    function renderRadar(scores, pk, sk, isHybrid) {
+      const canvas = document.getElementById("radar-canvas");
+      
+      if (typeof Chart === 'undefined') {
+        const wrap = canvas.parentNode;
+        wrap.innerHTML = `<div style="text-align:center; padding:1.5rem; font-size:0.82rem; color:var(--text-muted); border:1px dashed var(--border); margin-top:1rem;">
+          ⚠️ セキュリティ制限やオフライン環境により、レーダーチャートの表示がブロックされています（CSS簡易グラフは上記で確認可能です）。
+        </div>`;
+        return;
+      }
+
+      if (radarChartInstance) { radarChartInstance.destroy(); }
+
+      const labels = TYPE_KEYS.map(k => typeDetails[k].name.replace("型", ""));
+      const data = TYPE_KEYS.map(k => getPercentage(scores[k]));
+      const mainColor = typeDetails[pk].color;
+
+      radarChartInstance = new Chart(canvas, {
+        type: "radar",
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "発信バイアス傾向",
+            data: data,
+            backgroundColor: mainColor + "22",
+            borderColor: mainColor,
+            borderWidth: 2.5,
+            pointBackgroundColor: TYPE_KEYS.map(k => typeDetails[k].color),
+            pointBorderColor: "#fff",
+            pointBorderWidth: 1.5,
+            pointRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: { legend: { display: false } },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                stepSize: 25,
+                display: false
+              },
+              grid: { color: "rgba(26,26,46,0.06)" },
+              angleLines: { color: "rgba(26,26,46,0.08)" },
+              pointLabels: {
+                font: { family: "'Source Sans 3', sans-serif", size: 11, weight: "600" },
+                color: TYPE_KEYS.map(k => {
+                  if (k === pk) return typeDetails[pk].color;
+                  if (isHybrid && k === sk) return typeDetails[sk].color;
+                  return "#8B8B9E";
+                })
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // ================================================================
+    // 10. MEMO & CHECKLIST (localStorage)
+    // ================================================================
+    function initMemoChecklist(pk, sk, compositeKeys) {
+      let suffix = pk;
+      if (compositeKeys) {
+        suffix += "_" + compositeKeys.join("_");
+      } else if (sk) {
+        suffix += "_" + sk;
+      }
+      activeCheckKey = `souri_checklist_${suffix}`;
+      activeMemoKey = `souri_memo_${suffix}`;
+
+      const saved = safeStorage.getItem(activeCheckKey);
+      if (saved) {
+        try { dynamicChecklist = JSON.parse(saved); }
+        catch (e) { dynamicChecklist = []; }
+      }
+      if (!saved || !dynamicChecklist.length) {
+        dynamicChecklist = [{ text: typeDetails[pk].okAction, checked: false }];
+        saveChecklist();
+      }
+      renderChecklist();
+
+      const memo = safeStorage.getItem(activeMemoKey) || "";
+      document.getElementById("memo-area").value = memo;
+      document.getElementById("print-memo").textContent = memo;
+    }
+
+    function renderChecklist() {
+      const wrap = document.getElementById("r-checklist");
+      wrap.innerHTML = "";
+      dynamicChecklist.forEach((item, i) => {
+        const label = document.createElement("label");
+        label.className = "check-item";
+        const cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = item.checked;
+        cb.addEventListener("change", () => { dynamicChecklist[i].checked = cb.checked; saveChecklist(); });
+        const span = document.createElement("span");
+        span.textContent = item.text;
+        label.appendChild(cb);
+        label.appendChild(span);
+        wrap.appendChild(label);
+      });
+    }
+
+    function saveChecklist() {
+      if (activeCheckKey) {
+        safeStorage.setItem(activeCheckKey, JSON.stringify(dynamicChecklist));
+      }
+    }
+
+    document.getElementById("btn-add").addEventListener("click", () => {
+      const inp = document.getElementById("input-add");
+      const txt = inp.value.trim();
+      if (txt) {
+        dynamicChecklist.push({ text: txt, checked: false });
+        inp.value = "";
+        saveChecklist();
+        renderChecklist();
+      }
+    });
+
+    document.getElementById("memo-area").addEventListener("input", e => {
+      if (activeMemoKey) {
+        safeStorage.setItem(activeMemoKey, e.target.value);
+      }
+      document.getElementById("print-memo").textContent = e.target.value;
+    });
+
+    // ================================================================
+    // 11. COPY SERIFU
+    // ================================================================
+    document.getElementById("btn-copy").addEventListener("click", () => {
+      const text = document.getElementById("r-serifu").textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("btn-copy");
+        btn.innerHTML = "✓";
+        setTimeout(() => {
+          btn.innerHTML = '<svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6ZM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1H2Z"/></svg>';
+        }, 1500);
+      });
+    });
+
+    // ================================================================
+    // 12. PRINT / IMAGE DOWNLOAD / SHARE
+    // ================================================================
+    document.getElementById("btn-print").addEventListener("click", () => { window.print(); });
+
+    // Image Download
+    document.getElementById("btn-dl-img").addEventListener("click", () => {
+      const r = analyze();
+      const pt = typeDetails[r.pk], st = typeDetails[r.sk], tt = typeDetails[r.tk];
+      const canvas = document.createElement("canvas");
+      canvas.width = 640; canvas.height = 960;
+      const ctx = canvas.getContext("2d");
+
+      const accentColor = r.isComposite ? "#2F6F6D" : pt.color;
+
+      // Background
+      ctx.fillStyle = "#F7F8F6";
+      ctx.fillRect(0, 0, 640, 960);
+
+      // Top accent bar
+      ctx.fillStyle = accentColor;
+      ctx.fillRect(0, 0, 640, 6);
+
+      // Header area
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(0, 6, 640, 200);
+      ctx.strokeStyle = "#E5E7EB";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(0, 6, 640, 200);
+
+      // Title
+      ctx.fillStyle = "#1F2937";
+      ctx.textAlign = "center";
+      ctx.font = "bold 22px 'Noto Serif JP', serif";
+      ctx.fillText("作れるのに伸びないクセ診断", 320, 55);
+
+      // Type name
+      ctx.font = "bold 32px 'Noto Serif JP', serif";
+      ctx.fillStyle = accentColor;
+      const titleText = r.isComposite ? "⚖️ 複合傾向型" : `${pt.emoji} ${pt.name}`;
+      ctx.fillText(titleText, 320, 110);
+
+      // Sub-tendency line
+      ctx.font = "600 14px 'Source Sans 3', sans-serif";
+      ctx.fillStyle = "#4B5563";
+      if (r.isComposite) {
+        ctx.fillText(`出やすい傾向: ${pt.emoji} ${pt.name} / ${st.emoji} ${st.name} / ${tt.emoji} ${tt.name}`, 320, 140);
+      } else if (r.isHybrid) {
+        ctx.fillText(`副傾向: ${st.emoji} ${st.name}`, 320, 140);
+      }
+
+      // Ratio
+      ctx.font = "600 14px 'Source Sans 3', sans-serif";
+      ctx.fillStyle = "#6B7280";
+      const ratioText = r.isHybrid
+        ? `${pt.name.replace("型","")} ${r.pRatio}% / ${st.name.replace("型","")} ${r.sRatio}%`
+        : r.isComposite ? "" : `バイアス傾向度: ${getPercentage(r.scores[r.pk])}%`;
+      if (ratioText) ctx.fillText(ratioText, 320, 165);
+
+      // Catchcopy
+      if (!r.isComposite && !r.isHybrid) {
+        ctx.font = "italic 14px 'Noto Serif JP', serif";
+        ctx.fillStyle = "#4B5563";
+        ctx.fillText(pt.catchcopy, 320, 190);
+      }
+
+      // Misses block
+      ctx.fillStyle = "#FEF2F2";
+      roundRect(ctx, 32, 230, 576, 160, 4);
+      ctx.fill();
+      ctx.strokeStyle = "rgba(239, 68, 68, 0.2)";
+      ctx.stroke();
+
+      ctx.fillStyle = "#EF4444";
+      ctx.textAlign = "left";
+      ctx.font = "bold 18px 'Noto Serif JP', serif";
+      ctx.fillText("⚠ 最も起こしやすい伸び悩み", 52, 265);
+
+      ctx.fillStyle = "#1F2937";
+      ctx.font = "500 15px 'Noto Serif JP', serif";
+      let my = 300;
+      let imgMisses = [];
+      if (r.isComposite) {
+        imgMisses = [pt.misses[0], st.misses[0], tt.misses[0]];
+      } else if (r.isHybrid) {
+        imgMisses = [pt.misses[0], st.misses[0], pt.misses[1]];
+      } else {
+        imgMisses = pt.misses;
+      }
+      imgMisses.forEach(m => { ctx.fillText("— " + m, 52, my); my += 30; });
+
+      // OK Action block
+      ctx.fillStyle = "#F0FDF4";
+      roundRect(ctx, 32, 415, 576, 120, 4);
+      ctx.fill();
+      ctx.strokeStyle = "rgba(34, 197, 94, 0.2)";
+      ctx.stroke();
+
+      ctx.fillStyle = "#22C55E";
+      ctx.font = "bold 18px 'Noto Serif JP', serif";
+      ctx.fillText("✅ 明日からできるOK行動", 52, 450);
+
+      ctx.fillStyle = "#1F2937";
+      ctx.font = "bold 16px 'Noto Serif JP', serif";
+      ctx.fillText(pt.okAction, 52, 490);
+
+      // Footer
+      ctx.fillStyle = "#9CA3AF";
+      ctx.textAlign = "center";
+      ctx.font = "13px 'Source Sans 3', sans-serif";
+      ctx.fillText("作れるのに伸びないクセ診断 — @EarthKey", 320, 920);
+
+      // Accent bottom bar
+      ctx.fillStyle = accentColor;
+      ctx.fillRect(0, 954, 640, 6);
+
+      const link = document.createElement("a");
+      link.download = `伸びないクセ診断_${r.isComposite ? "複合傾向型" : pt.name}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    });
+
+    // Share on X
+    document.getElementById("btn-share-x").addEventListener("click", () => {
+      const r = analyze();
+      const pt = typeDetails[r.pk], st = typeDetails[r.sk];
+      let text = "";
+      if (r.isComposite) {
+        text = `【作れるのに伸びないクセ診断】私のタイプは「複合傾向型」でした。\nまずは「${pt.okAction}」を意識します！ #作れるのに伸びないクセ診断`;
+      } else if (r.isHybrid) {
+        text = `【作れるのに伸びないクセ診断】私のタイプは「${pt.name} × ${st.name}（複合）」でした。\nまずは「${pt.okAction}」を徹底します！ #作れるのに伸びないクセ診断`;
+      } else {
+        text = `【作れるのに伸びないクセ診断】私のバイアスタイプは「${pt.name}」でした。\n明日から「${pt.okAction}」を実践します！ #作れるのに伸びないクセ診断`;
+      }
+      const url = window.location.href;
+      window.open(
+        `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    });
+
+    // Restart
+    document.getElementById("btn-restart").addEventListener("click", () => {
+      const hasSavedMemo = !!(activeMemoKey && safeStorage.getItem(activeMemoKey));
+      const hasSavedCheck = !!(activeCheckKey && safeStorage.getItem(activeCheckKey));
+      if (hasSavedMemo || hasSavedCheck) {
+        const ok = window.confirm("保存中の振り返りメモとチェックリストが削除されます。続行しますか？");
+        if (!ok) return;
+      }
+      if (activeCheckKey) safeStorage.removeItem(activeCheckKey);
+      if (activeMemoKey) safeStorage.removeItem(activeMemoKey);
+      showScreen($intro);
+    });
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    // Lightbox Control
+    let lightboxLastFocus = null;
+    function openLightbox(src, alt) {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCap = document.getElementById("lightbox-caption");
+
+      lightboxLastFocus = document.activeElement;
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightboxCap.textContent = alt;
+
+      lightbox.classList.add("active");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        const closeBtn = lightbox.querySelector(".lightbox-close");
+        if (closeBtn) closeBtn.focus();
+      }, 50);
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById("lightbox");
+      lightbox.classList.remove("active");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lightboxLastFocus && typeof lightboxLastFocus.focus === "function") {
+        lightboxLastFocus.focus();
+      }
+    }
+
+    document.addEventListener("keydown", e => {
+      const lightbox = document.getElementById("lightbox");
+      if (!lightbox.classList.contains("active")) return;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeLightbox();
+      } else if (e.key === "Tab") {
+        e.preventDefault();
+        const closeBtn = lightbox.querySelector(".lightbox-close");
+        if (closeBtn) closeBtn.focus();
+      }
+    });
+  </script>
+
+  <!-- Lightbox Modal for Image Expansion -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="拡大画像" aria-hidden="true" onclick="closeLightbox()">
+    <button type="button" class="lightbox-close" aria-label="拡大画像を閉じる" onclick="event.stopPropagation(); closeLightbox();">&times;</button>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+</body>
+</html>
