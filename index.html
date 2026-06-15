@@ -1092,15 +1092,7 @@
          ================================================================ -->
     <div id="result-screen" class="screen result-screen" tabindex="-1">
 
-      <!-- S1: Misses -->
-      <div class="result-section misses-section">
-        <p class="section-label">Assessment Result</p>
-        <h2 class="misses-heading">⚠ あなたが最も起こしやすい伸び悩み</h2>
-        <div id="r-low-score-notice" style="display:none;"></div>
-        <ul id="r-misses" class="misses-list"></ul>
-      </div>
-
-      <!-- S2: Type Header -->
+      <!-- S1: Type Header -->
       <div id="r-type-section" class="result-section type-section">
         <p id="r-type-eyebrow" class="type-eyebrow-label" style="display:none;">あなたのタイプ</p>
         <span id="r-emoji" class="type-emoji"></span>
@@ -1110,6 +1102,14 @@
         <div id="r-sub-tendency-block" class="sub-tendency-block" style="display:none;"></div>
         <div id="r-illustration-container" class="illustration-container"></div>
         <p id="r-catchcopy" class="type-catchcopy"></p>
+      </div>
+
+      <!-- S2: Misses -->
+      <div class="result-section misses-section">
+        <p class="section-label">Assessment Result</p>
+        <h2 class="misses-heading">⚠ あなたが最も起こしやすい伸び悩み</h2>
+        <div id="r-low-score-notice" style="display:none;"></div>
+        <ul id="r-misses" class="misses-list"></ul>
       </div>
 
       <!-- S3: Reason -->
@@ -1174,6 +1174,7 @@
           <button id="btn-print" class="btn-action btn-action--fill">🖨 結果を印刷 / PDF保存</button>
           <button id="btn-dl-img" class="btn-action btn-action--outline">📷 結果画像をダウンロード</button>
           <button id="btn-share-x" class="btn-action btn-action--outline">𝕏 改善行動を宣言してポスト</button>
+          <button id="btn-share-substack" class="btn-action btn-action--outline">Substackに診断結果を共有</button>
           <button id="btn-restart" class="btn-action btn-action--ghost">もう一度診断する</button>
         </div>
         <div class="study-guide">
@@ -1493,7 +1494,7 @@
     function renderResult(r) {
       const pt = typeDetails[r.pk], st = typeDetails[r.sk], tt = typeDetails[r.tk];
 
-      // S1: Misses
+      // S2: Misses
       const missesUl = document.getElementById("r-misses");
       const lowScoreNotice = document.getElementById("r-low-score-notice");
       missesUl.innerHTML = "";
@@ -1525,7 +1526,7 @@
         missesUl.appendChild(li);
       });
 
-      // S2: Type
+      // S1: Type
       const typeSection = document.getElementById("r-type-section");
       typeSection.style.borderBottom = `3px solid ${r.isComposite ? 'var(--primary)' : pt.color}`;
 
@@ -1979,24 +1980,47 @@
       link.click();
     });
 
+    function buildShareText(r) {
+      const pt = typeDetails[r.pk], st = typeDetails[r.sk];
+      if (r.isComposite) {
+        return `【作れるのに伸びないクセ診断】私のタイプは「複合傾向型」でした。\nまずは「${pt.okAction}」を意識します！ #作れるのに伸びないクセ診断`;
+      }
+      if (r.isHybrid) {
+        return `【作れるのに伸びないクセ診断】私のタイプは「${pt.name} × ${st.name}（複合）」でした。\nまずは「${pt.okAction}」を徹底します！ #作れるのに伸びないクセ診断`;
+      }
+      return `【作れるのに伸びないクセ診断】私のバイアスタイプは「${pt.name}」でした。\n明日から「${pt.okAction}」を実践します！ #作れるのに伸びないクセ診断`;
+    }
+
     // Share on X
     document.getElementById("btn-share-x").addEventListener("click", () => {
-      const r = analyze();
-      const pt = typeDetails[r.pk], st = typeDetails[r.sk];
-      let text = "";
-      if (r.isComposite) {
-        text = `【作れるのに伸びないクセ診断】私のタイプは「複合傾向型」でした。\nまずは「${pt.okAction}」を意識します！ #作れるのに伸びないクセ診断`;
-      } else if (r.isHybrid) {
-        text = `【作れるのに伸びないクセ診断】私のタイプは「${pt.name} × ${st.name}（複合）」でした。\nまずは「${pt.okAction}」を徹底します！ #作れるのに伸びないクセ診断`;
-      } else {
-        text = `【作れるのに伸びないクセ診断】私のバイアスタイプは「${pt.name}」でした。\n明日から「${pt.okAction}」を実践します！ #作れるのに伸びないクセ診断`;
-      }
+      const text = buildShareText(analyze());
       const url = window.location.href;
       window.open(
         `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
         "_blank",
         "noopener,noreferrer"
       );
+    });
+
+    // Share on Substack
+    const shareSubstackButton = document.getElementById("btn-share-substack");
+    if (!navigator.share) {
+      shareSubstackButton.style.display = "none";
+    }
+    shareSubstackButton.addEventListener("click", async () => {
+      const text = buildShareText(analyze());
+      const url = window.location.href;
+      try {
+        await navigator.share({
+          title: "作れるのに伸びないクセ診断",
+          text,
+          url
+        });
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          alert("共有メニューを開けませんでした。");
+        }
+      }
     });
 
     // Restart
